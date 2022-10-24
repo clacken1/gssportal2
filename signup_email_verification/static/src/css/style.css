@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.block_confirm_account {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.block_title {
+    font-size: 30px;
+}
+
+.block_title_p {
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.block_title_p a {
+    color: #388c8d;
+    text-decoration: none;
+}
+
+.block_title_p a:hover {
+    color: #343a40;
+}

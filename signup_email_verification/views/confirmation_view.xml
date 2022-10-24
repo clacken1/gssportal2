@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="confirmation">
+            <t t-call="website.layout">
+                <div class="wrapper">
+                    <div class="block_confirm_account">
+                        <h1 class="block_title">Account Verification</h1>
+                        <p t-if="not status" class="block_title_p text-center">
+                            An account verification link has been sent to your email address.
+                            <br/>
+                            Please verify your account.
+                        </p>
+                        <p t-if="status == 'invalid'" class="block_title_p">
+                            Invalid token.
+                        </p>
+                        <p t-if="status == 'confirmed'" class="block_title_p text-center">
+                            Your account has been verified.
+                            <br/>
+                            Go to <a href="/web/login">Login</a> page.
+                        </p>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
