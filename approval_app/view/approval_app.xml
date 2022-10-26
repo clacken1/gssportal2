@@ -1,0 +1,265 @@
+<odoo>
+
+
+    <record id="approval_app_tree_view" model="ir.ui.view">
+            <field name="name">approval.app.tree</field>
+            <field name="model">approval.app</field>
+            <field name="arch" type="xml">
+                <tree string="Approval App">
+                    <field name="name"/>
+                    <field name="submission_date"/>
+                    <field name="admin_officer"/>
+                    <field name="admin_appro_date"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="approval_app_free_view" model="ir.ui.view">
+             <field name="name">approval.app.tree</field>
+             <field name="model">approval.app</field>
+            <field name="arch" type="xml">
+                <form string="Approval App">
+                    <header>
+                        <button name="action_approval_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'new')]}" groups="approval_app.admin_approval_id"/>
+                        <button name="action_admin_approval_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'submission')]}" groups="approval_app.admin_user_access_id"/>
+                        <button name="action_osd_officer_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'admin_approval')]}" groups="approval_app.admin_user_access_id"/>
+                        <button name="action_send_to_lead_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'osd_officer')]}" groups="approval_app.admin_user_access_id"/>
+                        <button name="action_send_to_council_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'send_lead_group')]}" groups="approval_app.admin_user_access_id"/>
+                        <button name="action_relase_date_submission" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': [('stages', '!=', 'sent_council')]}" groups="approval_app.admin_user_access_id"/>
+                        <field name="stages" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                             <group>
+                            <field name="name"/>
+                            <field name="submission_date" />
+                            <field name="admin_officer"/>
+                            <field name="admin_appro_date"/>
+                            <field name="osd_officer_one"/>
+                            <field name="date_osd_officer_assigned"/>
+                            <field name="date_approved_by_ocd_officer"/>
+                            <field name="date_sent_to_lead_group"/>
+                            <field name="date_appro_by_lead_group"/>
+                            <field name="date_sent_to_council"/>
+                            <field name="date_return_from_council"/>
+                            <field name="relese_date_to"/>
+                                 <field name="application_id"/>
+                             </group>
+                        </group>
+
+                          <notebook>
+                              <page string="Job Outline">
+                                  <group>
+                                       <group>
+                                            <field name="job_title"/>
+                                            <field name="purpose_job"/>
+                                            <field name="level"/>
+                                        </group>
+                                       <group>
+                                            <field name="modality"/>
+                                            <field name="no_of_person"/>
+                                      </group>
+                                  </group>
+
+                              </page>
+                                <page string="Demographics">
+                                  <group>
+                                       <group>
+                                            <field name="contact"/>
+                                            <field name="office_phone"/>
+                                            <field name="cell_phone"/>
+                                            <field name="email"/>
+                                            <field name="address"/>
+                                        </group>
+                                       <group>
+                                            <field name="industry"/>
+                                            <field name="sub_sector"/>
+                                            <field name="date"/>
+                                            <field name="staff_headcount"/>
+                                            <field name="vale_attr"/>
+                                      </group>
+                                  </group>
+
+                              </page>
+                          </notebook>
+
+
+                         <notebook>
+                              <page string="Lead Group" nolabel="1">
+                                  <group>
+                                      <field name="lead_group_member">
+                                          <tree editable="bottom">
+                                              <field name="name"/>
+                                              <field name="email"/>
+                                              <field name="contact"/>
+                                              <field name="title"/>
+                                          </tree>
+                                      </field>
+                                  </group>
+                              </page>
+                              <page string="Job Tasks And Description">
+                                  <group>
+                                      <field name="job_task">
+                                          <tree editable="bottom">
+                                              <field name="name"/>
+                                              <field name="detail_task"/>
+                                              <field name="app_1_id" invisible="1"/>
+                                          </tree>
+                                      </field>
+                                  </group>
+                              </page>
+                                 </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+      <record id="approval_access_rights_access" model="ir.ui.view">
+            <field name="name">approval.app.form.inherit</field>
+            <field name="model">approval.app</field>
+            <field name="inherit_id" ref="approval_app.approval_app_free_view" />
+            <field name="groups_id" eval="[(6,0, [ref('approval_app.admin_approval_id')])]" />
+            <field name="arch" type="xml">
+                <field name="submission_date" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="admin_officer" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="admin_appro_date" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="osd_officer_one" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                <field name="date_osd_officer_assigned" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="date_approved_by_ocd_officer" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="date_sent_to_lead_group" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+
+                 <field name="date_appro_by_lead_group" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="date_sent_to_council" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="date_return_from_council" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                 <field name="relese_date_to" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+                    <field name="application_id" position="attributes">
+                   <attribute name="attrs">{'readonly':1}</attribute>
+                </field>
+
+            </field>
+</record>
+
+    <record id="approval_app_kanban" model="ir.ui.view">
+        <field name="name">approval.kanban</field>
+        <field name="model">approval.app</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+          <kanban default_group_by="stages" class="o_kanban_small_column" on_create="quick_create" quick_create_view="approval_app.approval_app_form_view" >
+                    <field name="stages"/>
+                    <field name="name"/>
+                    <field name="submission_date"/>
+                    <field name="admin_officer"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                        <span t-if="record.name.raw_value">
+                            <field name="name"/>
+                        </span>
+                        <div>
+                        Submission Date :-<span t-if="record.submission_date.raw_value">
+                            <field name="submission_date"/>
+                        </span>
+                    </div>
+                    <div>
+                        Admin Officer :-<span t-if="record.admin_officer.raw_value">
+                            <field name="admin_officer"/>
+                        </span>
+                    </div>
+                        </div>
+                        
+                    </t>
+                    </templates>
+                </kanban>
+
+        </field>
+    </record>
+
+
+     <record id="approval_app_Action" model="ir.actions.act_window">
+        <field name="name">Approval App</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">approval.app</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Approval App
+            </p>
+
+        </field>
+    </record>
+
+<!--    <record id="approval_app_form_view" model="ir.ui.view">-->
+<!--            <field name="name">approval.stage.tree</field>-->
+<!--            <field name="model">approval.stage</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Approval App">-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                             <field name="name"/>-->
+<!--                        </group>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--   <record id="approval_app_tree_view" model="ir.ui.view">-->
+<!--            <field name="name">approval.app.tree</field>-->
+<!--            <field name="model">approval.stage</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Approval App" editable="bottom">-->
+<!--                    <field name="name"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--     <record id="stage_approval_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Approval Stages</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">approval.stage</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                Create a new Stages-->
+<!--            </p>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+    <menuitem id="approval_app_parent_id" name="Approval" />
+      <menuitem id="approval_app_child_id" name="Approval"  parent="approval_app_parent_id" action="approval_app_Action" />
+<!--     <menuitem id="approval_stage_id" name="Stage"  parent="approval_app_parent_id" action="stage_approval_action" groups="base.group_system" />-->
+        <menuitem id="profile_app_parent_id" name="Profile" />
+     <menuitem id="profile_id" name="Profile"  parent="profile_app_parent_id" action="contacts.action_contacts" groups="approval_app.admin_approval_id" />
+    <record id="approval_access_own_contacts_partner" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="groups_id" eval="[(6,0, [ref('approval_app.admin_approval_id')])]" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_chatter')]" position="replace"></xpath>
+            </field>
+        </record>
+
+</odoo>
