@@ -29,7 +29,7 @@ class ApprovalApp(models.Model):
     office_phone=fields.Char('Office Phone')
     cell_phone=fields.Char('Cell Phone')
     email=fields.Char('Email')
-    address=fields.Char('Address')
+    address=fields.Text('Address')
     industry=fields.Many2one('industry.company')
     sub_sector=fields.Many2one('sub.sector')
     date=fields.Date('Date')
