@@ -86,6 +86,8 @@
                                             <field name="date"/>
                                             <field name="staff_headcount"/>
                                             <field name="vale_attr"/>
+                                           <field name="attachment_ids" widget="many2many_binary" class="oe_inline"/>
+
                                       </group>
                                   </group>
 
