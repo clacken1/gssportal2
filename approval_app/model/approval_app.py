@@ -25,7 +25,7 @@ class ApprovalApp(models.Model):
     no_of_person=fields.Integer('Number of persons expected to be trained')
 
     #lead_group_member=fields.Many2one('group.member','app_id',string='Lead Group Member	')
-    lead_group_member=fields.Many2one('group.member','app_id',string='Lead Group Member	')
+    lead_group_member=fields.One2many('group.member','app_id',string='Lead Group Member	')
     contact =fields.Many2one('res.partner',string='Contact')
     office_phone=fields.Char('Office Phone')
     cell_phone=fields.Char('Cell Phone')
