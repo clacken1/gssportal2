@@ -36,6 +36,8 @@ class ApprovalApp(models.Model):
     staff_headcount=fields.Integer('Staff Headcount	')
     vale_attr=fields.Text('Values and attitudes	')
     job_task=fields.One2many('task.description','app_1_id')
+    attachment_ids = fields.Many2many('ir.attachment', 'car_rent_checklist_ir_attachments_rel',
+                                  'rental_id', 'attachment_id', string="Attachments")
     # stage_id=fields.Many2one('approval.stage')
     stages=fields.Selection([
         ('new', 'New'),
