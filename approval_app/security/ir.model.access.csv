@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_approval_app,access.approval.app,model_approval_app,,1,1,1,1
-access_group_member,access.group.member,model_group_member,,1,1,1,1
-access_industry_company,access.industry.company,model_industry_company,,1,1,1,1
-access_sub_sector,access.sub.sector,model_sub_sector,,1,1,1,1
-access_task_description,access.task.description,model_task_description,,1,1,1,1
-access_approval_stage,access.approval.stage,model_approval_stage,,1,1,1,1
